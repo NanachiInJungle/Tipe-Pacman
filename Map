@@ -1,17 +1,64 @@
+import keyboard
+#pense à importer ca bouffon
+
 hauteur_map = 30
 largeur_map = 30
-def create_map(hauteur_map,largeur_map):
+
+
+def create_map(hauteur_map, largeur_map):
     map = []
     for i in range(hauteur_map):
-        if i == 0 or i == hauteur_map - 1 : 
+        if i == 0 or i == hauteur_map - 1:
             map.append([1 for k in range(largeur_map)])
-        else : 
+        else:
             map.append([])
             map[i].append(1)
-            for j in range(1,largeur_map - 1):
+            for j in range(1, largeur_map - 1):
                 map[i].append(0)
             map[i].append(1)
     return map
 
-for ligne in create_map(hauteur_map,largeur_map) :
+
+def detect_key_press():
+    key = ""
+    while key == "":
+        if keyboard.is_pressed("q"):
+            key = "q"
+            break
+        elif keyboard.is_pressed("z"):
+            key = "z"
+            break
+        elif keyboard.is_pressed("s"):
+            key = "s"
+            break
+        elif keyboard.is_pressed("d"):
+            key = "d"
+            break
+    return key
+
+
+for ligne in create_map(hauteur_map, largeur_map):
     print(ligne)
+
+# Map en binaire (ne pas effacer)
+map = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+       [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+       [1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1],
+       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+       [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
+       [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+       [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1],
+       [1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1],
+       [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+       [1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1],
+       [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1],
+       [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+       [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
+       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+       [1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1],
+       [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+
+
+while True:
+    detect_key_press() # chepa pk ca ecrit 15mille fois mais osef
