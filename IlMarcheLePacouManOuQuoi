@@ -1,7 +1,9 @@
 import keyboard
 import time 
+import random 
 hauteur_map = 10
 largeur_map = 10
+
 def create_map(hauteur_map,largeur_map):
     map = []
     for i in range(hauteur_map):
@@ -22,6 +24,15 @@ def position_ini(map):
     pos_x = hauteur_map//2
     pos_y = largeur_map//2
     return map,pos_x,pos_y
+
+def create_condition_sortie(map,pos_x,pos_y):
+    while True:
+        pos_x_sortie = random.randint(1,hauteur_map- 2)
+        pos_y_sortie = random.randint(1,largeur_map - 2)
+        if pos_x_sortie != pos_x and pos_y_sortie != pos_y : break
+    
+    map[pos_x_sortie][pos_y_sortie] = 3
+    return map,pos_x_sortie,pos_y_sortie
 
 def get_key():
     key = keyboard.read_key()
@@ -44,18 +55,34 @@ def test_wall(map,key,pos_x,pos_y):
         if pos_y == 1 : return False
         elif map[pos_x][pos_y - 1 ] == 1 : return False
         else : return True
+
+def test_sortie(key,pos_x,pos_y,pos_x_sortie,pos_y_sortie):
+    if key == "z" and  pos_x - 1 == pos_x_sortie and pos_y == pos_y_sortie:
+        return True
+    elif key == "s" and pos_x + 1 == pos_x_sortie and pos_y == pos_y_sortie:
+        return True
+    elif key == "q" and pos_x == pos_x_sortie and pos_y - 1 == pos_y_sortie:
+        return True
+    elif key == "d" and pos_x == pos_x_sortie and pos_y + 1 == pos_y_sortie:
+            return True
+    
+         
     
 def move_pacman():
     mapini = create_map(hauteur_map,largeur_map)
-    map,pos_x,pos_y = position_ini(mapini)
+    map1,pos_x,pos_y = position_ini(mapini)
+    map,pos_x_sortie,pos_y_sortie = create_condition_sortie(map1,pos_x,pos_y)
     for ligne in map:
         print(ligne)
     print("--------------------------------------")
     while True :
         key = get_key()
         time.sleep(0.1)
-        if key == "z" or "s" or "q" or "d" :
-            if test_wall(map,key,pos_x,pos_y):
+        if key == "z" or key == "s" or key == "q" or key ==  "d" :
+            print(pos_x_sortie,pos_y_sortie)
+            if test_sortie(key,pos_x,pos_y,pos_x_sortie,pos_y_sortie):
+                break
+            elif test_wall(map,key,pos_x,pos_y):
                 if key == "z":
                     map[pos_x][pos_y],map[pos_x-1][pos_y] = map[pos_x-1][pos_y],map[pos_x][pos_y]
                     pos_x = pos_x - 1
@@ -72,11 +99,9 @@ def move_pacman():
             for ligne in map:
                         print(ligne)
             print("-------------------------------------------")
-        
         elif key == "r": 
-            print("Finito")
             break
+    return("Finito")
                 
             
-move_pacman()          
-            
+move_pacman()
