@@ -2,8 +2,8 @@ import tkinter as tk
 import keyboard
 import time
 import random
-hauteur_map = 30
-largeur_map = 30
+hauteur_map = 10
+largeur_map = 10
 
 def create_map(hauteur_map,largeur_map):
     map = []
@@ -99,7 +99,7 @@ def move_pacman():
     canvas = tk.Canvas(root, width=canvas_l, height=canvas_h)
     canvas.pack()
     afficher_map(map)
-    root.mainloop()
+    root.update()
     for ligne in map:
         print(ligne)
     print("--------------------------------------")
@@ -125,8 +125,10 @@ def move_pacman():
                     pos_y = pos_y - 1
             for ligne in map:
                 print(ligne)
-            print("-------------------------------------------")
+            canvas.pack()
             afficher_map(map)
+            root.update()
+            print("-------------------------------------------")
         elif key == "r":
             break
     return("Finito")
