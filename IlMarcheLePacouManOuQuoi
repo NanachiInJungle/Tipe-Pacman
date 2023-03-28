@@ -2,8 +2,8 @@ import tkinter as tk
 import keyboard
 import time
 import random
-hauteur_map = 1000
-largeur_map = 1000
+hauteur_map = 30
+largeur_map = 30
 
 def create_map(hauteur_map,largeur_map):
     map = []
@@ -17,7 +17,6 @@ def create_map(hauteur_map,largeur_map):
                 map[i].append(0)
             map[i].append(1)
     return map
-
 
 def position_ini(map):
     pac_man = 5
@@ -70,12 +69,6 @@ def test_sortie(key,pos_x,pos_y,pos_x_sortie,pos_y_sortie):
 
 def afficher_map(map):
     print("maaaaaaaaap")
-    root = tk.Tk()
-    root.title("Pacman")
-    canvas_l = len(map[0]) * 20
-    canvas_L = len(map) * 20
-    canvas = tk.Canvas(root, width=canvas_l, height=canvas_L)
-    canvas.pack()
     for i in range(len(map)):
         for j in range(len(map[i])):
             x0 = j * 20
@@ -90,12 +83,23 @@ def afficher_map(map):
                 canvas.create_rectangle(x0, y0, x1, y1, fill="yellow")
             elif map[i][j] == 3:
                 canvas.create_rectangle(x0, y0, x1, y1, fill="red")
-    root.mainloop()
 
 def move_pacman():
     mapini = create_map(hauteur_map,largeur_map)
     map1,pos_x,pos_y = position_ini(mapini)
     map,pos_x_sortie,pos_y_sortie = create_condition_sortie(map1,pos_x,pos_y)
+    global root
+    global canvas_h
+    global canvas_l
+    global canvas
+    root = tk.Tk()
+    root.title("Pacman")
+    canvas_l = len(map[0]) * 20
+    canvas_h = len(map) * 20
+    canvas = tk.Canvas(root, width=canvas_l, height=canvas_h)
+    canvas.pack()
+    afficher_map(map)
+    root.mainloop()
     for ligne in map:
         print(ligne)
     print("--------------------------------------")
@@ -119,12 +123,14 @@ def move_pacman():
                 elif key == "q":
                     map[pos_x][pos_y],map[pos_x][pos_y-1] = map[pos_x][pos_y-1],map[pos_x][pos_y]
                     pos_y = pos_y - 1
-            afficher_map(map)
             for ligne in map:
                 print(ligne)
             print("-------------------------------------------")
+            afficher_map(map)
         elif key == "r":
             break
     return("Finito")
+
+
 
 move_pacman()
