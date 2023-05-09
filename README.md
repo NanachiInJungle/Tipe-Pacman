@@ -11,14 +11,18 @@ décisions) sur des jeux d’eSport ou plus largement en sport ?_**
 
   Les jeux vidéos étant informatisés, il est alors plus simple de récolter des données et de se servir de ces jeux comme cobaye afin d’élaborer des stratégies de parcours dans l’environnement du jeu considéré.
 
-  C’est pourquoi nous allons commencer par nous demander quel type d’algorithme et plus précisément quel algorithme permet de trouver le plus court chemin dans un environnement que l’on pourrait représenter par une grille avec plus ou moins d’obstacles.
+  C’est pourquoi nous allons commencer par nous demander quel type d’algorithme et plus précisément quel algorithme permet de trouver le plus court chemin dans un environnement que nous pourrions représenter par une grille avec plus ou moins d’obstacles.
 
   Ainsi, nous commencerons par comparer l’efficacité des différents algorithmes de recherche du plus court chemin, dans un labyrinthe semblable à celui de Pacman. C’est à dire dans une grille à coût uniforme dans laquelle on retrouve des obstacles mobiles ou non.
 
-  Ces algorithmes recherches peuvent basés sur des parcours en largeur ou des parcours en profondeur, que l’on définira plus tard. Cela peut par exemple être un algorithme Dijkstra (https://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra ), ou autre algorithme de recherche best-first, tels que l’algorithme de recherche en faisceau (https://fr.wikipedia.org/wiki/Algorithme_de_recherche_en_faisceau) , l’algorithme A* (https://fr.wikipedia.org/wiki/Algorithme_A*) ou encore l’algorithme Jump Point Search, une variante de A* adaptée pour les grilles à coût uniforme.
+  Ces algorithmes recherches peuvent basés sur des parcours en largeur ou des parcours en profondeur, que nous définirons plus tard. Cela peut par exemple être un algorithme Dijkstra (https://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra ), ou autre algorithme de recherche best-first, tels que l’algorithme de recherche en faisceau (https://fr.wikipedia.org/wiki/Algorithme_de_recherche_en_faisceau) , l’algorithme A* (https://fr.wikipedia.org/wiki/Algorithme_A*) ou encore l’algorithme Jump Point Search, une variante de A* adaptée pour les grilles à coût uniforme.
 
 ***Donner les defs de parcours largeur et Longueur***
 
   Nous utiliserons ainsi uniquement des algorithmes basés sur le parcours en largeur, car le parcours en profondeur est bien moins efficace.
 
 ***Demo de l'éfficacité deu parcours a faire: https://www.youtube.com/watch?v=aW9kZcJx64o***
+
+  Une des premières étapes a donc été de créer notre environnement de jeu Pacman ainsi que les mécaniques de déplacement (collision…), en python. Vous pouvez retrouver le code en question en annexe.
+
+  Pour le code du programme de base, c'est-à-dire la possibilité de bouger dans le labyrinthe librement: nous avons crée une carte symbolisée par des 1 et 0 qui correspondent respectivement à un mur ou un chemin. Puis le système de déplacement en échangeant tout simplement le 5 qui correspond à notre personnage et la position où il veut aller tout en interdisant notre personnage d'échanger sa position avec un mur.
